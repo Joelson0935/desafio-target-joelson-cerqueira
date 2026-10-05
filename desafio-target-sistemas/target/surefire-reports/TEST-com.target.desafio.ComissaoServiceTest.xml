@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.target.desafio.ComissaoServiceTest" time="0.195" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.target.desafio.ComissaoServiceTest" time="0.184" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BR"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21.0.12.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\user\AppData\Local\Temp\surefire7058415517450156471\surefirebooter9751665374090205720.jar C:\Users\user\AppData\Local\Temp\surefire7058415517450156471 2026-10-05T14-25-22_097-jvmRun1 surefire16945640414534399936tmp surefire_0893889707563504882tmp"/>
+    <property name="sun.java.command" value="C:\Users\user\AppData\Local\Temp\surefire9652351296667159904\surefirebooter15074510417183627119.jar C:\Users\user\AppData\Local\Temp\surefire9652351296667159904 2026-10-05T17-50-08_816-jvmRun1 surefire17719855932229878640tmp surefire_011390275968897078552tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\target\test-classes;C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\target\classes;C:\Users\user\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.18.2\jackson-databind-2.18.2.jar;C:\Users\user\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.18.2\jackson-annotations-2.18.2.jar;C:\Users\user\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.18.2\jackson-core-2.18.2.jar;C:\Users\user\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.1\junit-jupiter-engine-5.7.1.jar;C:\Users\user\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\user\.m2\repository\org\junit\platform\junit-platform-engine\1.7.1\junit-platform-engine-1.7.1.jar;C:\Users\user\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\user\.m2\repository\org\junit\platform\junit-platform-commons\1.7.1\junit-platform-commons-1.7.1.jar;C:\Users\user\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.1\junit-jupiter-api-5.7.1.jar;C:\Users\user\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.7.1\junit-jupiter-params-5.7.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\user\AppData\Local\Temp\surefire7058415517450156471\surefirebooter9751665374090205720.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\user\AppData\Local\Temp\surefire9652351296667159904\surefirebooter15074510417183627119.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.12.1+1-LTS-4"/>
@@ -58,9 +58,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="vendaAbaixoDe100NaoGeraComissao" classname="com.target.desafio.ComissaoServiceTest" time="0.017"/>
-  <testcase name="vendaExatamente500Gera5PorCento" classname="com.target.desafio.ComissaoServiceTest" time="0.001"/>
-  <testcase name="vendaEntre100e499Gera1PorCento" classname="com.target.desafio.ComissaoServiceTest" time="0.001"/>
-  <testcase name="vendaExatamente100Gera1PorCento" classname="com.target.desafio.ComissaoServiceTest" time="0.001"/>
-  <testcase name="consolidaComissaoPorVendedorConformeArquivoJson" classname="com.target.desafio.ComissaoServiceTest" time="0.162"/>
+  <testcase name="vendaNoLimiteInferiorDe500Aplica5PorCentoResultando25_00" classname="com.target.desafio.ComissaoServiceTest" time="0.016"/>
+  <testcase name="vendaDe250_30DentroDaFaixaDe1PorCentoResulta2_50ComArredondamento" classname="com.target.desafio.ComissaoServiceTest" time="0.001"/>
+  <testcase name="vendaDe90_75NaoGeraComissaoPorEstarAbaixoDe100" classname="com.target.desafio.ComissaoServiceTest" time="0"/>
+  <testcase name="vendaNoLimiteInferiorDe100Aplica1PorCentoResultando1_00" classname="com.target.desafio.ComissaoServiceTest" time="0"/>
+  <testcase name="consolidaTotaisDeComissaoPorVendedorAPartirDoVendasJson" classname="com.target.desafio.ComissaoServiceTest" time="0.152"/>
 </testsuite>

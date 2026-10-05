@@ -14,20 +14,20 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EstoqueServiceTest {
 
     private EstoqueService service;
 
     @BeforeEach
-    void setUp() {
-        // Recarrega os produtos do JSON a cada teste, garantindo isolamento.
+    void recarregarEstoqueDoJsonParaIsolarCadaTeste() {
         EstoqueWrapper wrapper = new JsonReader().ler("estoque.json", EstoqueWrapper.class);
         service = new EstoqueService(wrapper.getEstoque());
     }
 
     @Test
-    void carregaProdutosDoJson() {
+    void carregaOsCincoProdutosDoJsonComDescricaoEEstoqueIniciais() {
         List<Produto> produtos = service.listarProdutos();
         assertEquals(5, produtos.size());
         assertEquals("Caneta Azul", service.buscarProduto(101).getDescricaoProduto());
@@ -35,43 +35,41 @@ class EstoqueServiceTest {
     }
 
     @Test
-    void entradaSomaAoEstoqueERetornaEstoqueResultante() {
+    void entradaDe50EmProdutoCom150AtualizaEstoqueResultantePara200() {
         MovimentacaoEstoque mov = service.registrarMovimentacao(
                 101, TipoMovimentacao.ENTRADA, "Compra de fornecedor", 50);
 
-        assertEquals(200, mov.getEstoqueResultante());   // 150 + 50
+        assertEquals(200, mov.getEstoqueResultante());
         assertEquals(200, service.buscarProduto(101).getEstoque());
     }
 
     @Test
-    void saidaSubtraiDoEstoqueERetornaEstoqueResultante() {
+    void saidaDe25EmProdutoCom75AtualizaEstoqueResultantePara50() {
         MovimentacaoEstoque mov = service.registrarMovimentacao(
                 102, TipoMovimentacao.SAIDA, "Venda ao cliente", 25);
 
-        assertEquals(50, mov.getEstoqueResultante());    // 75 - 25
+        assertEquals(50, mov.getEstoqueResultante());
         assertEquals(50, service.buscarProduto(102).getEstoque());
     }
 
     @Test
-    void saidaAcimaDoEstoqueEhRecusadaEnaoAlteraOEstoque() {
+    void saidaMaiorQueOEstoqueEhRecusadaEMantemOEstoqueInalterado() {
         EstoqueInsuficienteException ex = assertThrows(EstoqueInsuficienteException.class, () ->
                 service.registrarMovimentacao(105, TipoMovimentacao.SAIDA, "Saída inválida", 91));
 
-        // Estoque permanece intacto (90) e nunca fica negativo.
         assertEquals(90, service.buscarProduto(105).getEstoque());
-        // A mensagem informa o problema ao usuário.
-        org.junit.jupiter.api.Assertions.assertTrue(ex.getMessage().contains("Estoque insuficiente"));
+        assertTrue(ex.getMessage().contains("Estoque insuficiente"));
     }
 
     @Test
-    void saidaDeTodoOEstoqueEhPermitidaEZeraOProduto() {
+    void saidaIgualAoEstoqueTotalEhPermitidaEZeraOProduto() {
         MovimentacaoEstoque mov = service.registrarMovimentacao(
                 105, TipoMovimentacao.SAIDA, "Saída total", 90);
-        assertEquals(0, mov.getEstoqueResultante());     // 90 - 90, nunca negativo
+        assertEquals(0, mov.getEstoqueResultante());
     }
 
     @Test
-    void cadaMovimentacaoRecebeIdUnicoIncremental() {
+    void movimentacoesRecebemIdsUnicosEmSequenciaCrescente() {
         MovimentacaoEstoque m1 = service.registrarMovimentacao(101, TipoMovimentacao.ENTRADA, "Entrada 1", 10);
         MovimentacaoEstoque m2 = service.registrarMovimentacao(102, TipoMovimentacao.ENTRADA, "Entrada 2", 10);
         MovimentacaoEstoque m3 = service.registrarMovimentacao(103, TipoMovimentacao.SAIDA, "Saída 1", 10);
@@ -83,13 +81,13 @@ class EstoqueServiceTest {
     }
 
     @Test
-    void produtoInexistenteLancaExcecao() {
+    void movimentacaoComCodigoDeProdutoInexistenteLancaIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
                 service.registrarMovimentacao(999, TipoMovimentacao.ENTRADA, "Produto inexistente", 5));
     }
 
     @Test
-    void quantidadeInvalidaLancaExcecao() {
+    void movimentacaoComQuantidadeZeroLancaIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
                 service.registrarMovimentacao(101, TipoMovimentacao.ENTRADA, "Qtd zero", 0));
     }

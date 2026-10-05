@@ -2,11 +2,6 @@ package com.target.desafio.model;
 
 import java.math.BigDecimal;
 
-/**
- * Representa uma venda individual realizada por um vendedor.
- * Usamos BigDecimal para o valor monetário, evitando os erros de
- * arredondamento típicos do tipo double em cálculos com dinheiro.
- */
 public class Venda {
 
     private String vendedor;

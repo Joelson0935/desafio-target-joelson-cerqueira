@@ -1,7 +1,6 @@
 package com.target.desafio;
 
 import com.target.desafio.model.ResumoComissao;
-import com.target.desafio.model.Venda;
 import com.target.desafio.model.VendasWrapper;
 import com.target.desafio.service.ComissaoService;
 import com.target.desafio.util.JsonReader;
@@ -20,30 +19,27 @@ class ComissaoServiceTest {
     private final ComissaoService service = new ComissaoService();
 
     @Test
-    void vendaAbaixoDe100NaoGeraComissao() {
+    void vendaDe90_75NaoGeraComissaoPorEstarAbaixoDe100() {
         assertEquals(new BigDecimal("0.00"), service.calcularComissaoVenda(new BigDecimal("90.75")));
     }
 
     @Test
-    void vendaEntre100e499Gera1PorCento() {
-        // 250.30 * 1% = 2.503 -> 2.50
-        assertEquals(new BigDecimal("2.50"), service.calcularComissaoVenda(new BigDecimal("250.30")));
-    }
-
-    @Test
-    void vendaExatamente500Gera5PorCento() {
-        // 500.00 * 5% = 25.00 (limite inferior da faixa de 5%)
-        assertEquals(new BigDecimal("25.00"), service.calcularComissaoVenda(new BigDecimal("500.00")));
-    }
-
-    @Test
-    void vendaExatamente100Gera1PorCento() {
-        // 100.00 * 1% = 1.00 (limite inferior da faixa de 1%)
+    void vendaNoLimiteInferiorDe100Aplica1PorCentoResultando1_00() {
         assertEquals(new BigDecimal("1.00"), service.calcularComissaoVenda(new BigDecimal("100.00")));
     }
 
     @Test
-    void consolidaComissaoPorVendedorConformeArquivoJson() {
+    void vendaDe250_30DentroDaFaixaDe1PorCentoResulta2_50ComArredondamento() {
+        assertEquals(new BigDecimal("2.50"), service.calcularComissaoVenda(new BigDecimal("250.30")));
+    }
+
+    @Test
+    void vendaNoLimiteInferiorDe500Aplica5PorCentoResultando25_00() {
+        assertEquals(new BigDecimal("25.00"), service.calcularComissaoVenda(new BigDecimal("500.00")));
+    }
+
+    @Test
+    void consolidaTotaisDeComissaoPorVendedorAPartirDoVendasJson() {
         VendasWrapper wrapper = new JsonReader().ler("vendas.json", VendasWrapper.class);
         List<ResumoComissao> resumos = service.calcularComissaoPorVendedor(wrapper.getVendas());
 

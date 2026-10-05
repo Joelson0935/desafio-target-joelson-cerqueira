@@ -3,12 +3,6 @@ package com.target.desafio.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * Resultado do cálculo de juros da Questão 3.
- * Guarda o valor original, a data de vencimento, os dias de atraso em relação
- * à data de referência, o valor dos juros apurado e o valor total atualizado
- * (original + juros).
- */
 public class ResultadoJuros {
 
     private final BigDecimal valorOriginal;

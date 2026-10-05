@@ -22,11 +22,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-/**
- * Menu interativo de console que reúne as três questões do desafio.
- * Responsável apenas pela interação com o usuário (entrada/saída);
- * toda a regra de negócio permanece nos services.
- */
 public class Menu {
 
     private static final Locale BR = Locale.forLanguageTag("pt-BR");
@@ -39,8 +34,7 @@ public class Menu {
     private final ComissaoService comissaoService = new ComissaoService();
     private final JurosService jurosService = new JurosService();
 
-    /** Mantido em memória para as movimentações acumularem durante a execução. */
-    private EstoqueService estoqueService;
+    private EstoqueService estoqueServiceEmMemoria;
 
     public void iniciar() {
         boolean executando = true;
@@ -70,9 +64,6 @@ public class Menu {
         System.out.print("Escolha uma opção: ");
     }
 
-    // ----------------------------------------------------------------
-    // Questão 1 - Comissão
-    // ----------------------------------------------------------------
     private void executarComissao() {
         VendasWrapper wrapper = jsonReader.ler("vendas.json", VendasWrapper.class);
         List<ResumoComissao> resumos = comissaoService.calcularComissaoPorVendedor(wrapper.getVendas());
@@ -89,13 +80,10 @@ public class Menu {
         }
     }
 
-    // ----------------------------------------------------------------
-    // Questão 2 - Estoque
-    // ----------------------------------------------------------------
     private void executarEstoque() {
-        if (estoqueService == null) {
+        if (estoqueServiceEmMemoria == null) {
             EstoqueWrapper wrapper = jsonReader.ler("estoque.json", EstoqueWrapper.class);
-            estoqueService = new EstoqueService(wrapper.getEstoque());
+            estoqueServiceEmMemoria = new EstoqueService(wrapper.getEstoque());
         }
 
         boolean noSubmenu = true;
@@ -124,7 +112,7 @@ public class Menu {
         System.out.println("\n--- Produtos em estoque ---");
         System.out.printf("%-8s %-28s %10s%n", "Código", "Descrição", "Estoque");
         System.out.println("-".repeat(48));
-        for (Produto p : estoqueService.listarProdutos()) {
+        for (Produto p : estoqueServiceEmMemoria.listarProdutos()) {
             System.out.printf("%-8d %-28s %10d%n",
                     p.getCodigoProduto(), p.getDescricaoProduto(), p.getEstoque());
         }
@@ -138,7 +126,7 @@ public class Menu {
         if (codigo == null) {
             return;
         }
-        Produto produto = estoqueService.buscarProduto(codigo);
+        Produto produto = estoqueServiceEmMemoria.buscarProduto(codigo);
         if (produto == null) {
             System.out.println("Produto não encontrado para o código " + codigo + ".");
             return;
@@ -153,7 +141,7 @@ public class Menu {
         }
 
         try {
-            MovimentacaoEstoque mov = estoqueService.registrarMovimentacao(codigo, tipo, descricao, quantidade);
+            MovimentacaoEstoque mov = estoqueServiceEmMemoria.registrarMovimentacao(codigo, tipo, descricao, quantidade);
             System.out.println("\nMovimentação #" + mov.getId() + " registrada com sucesso.");
             System.out.println("Produto: " + produto.getDescricaoProduto());
             System.out.println("Tipo: " + mov.getTipo());
@@ -167,7 +155,7 @@ public class Menu {
     }
 
     private void listarMovimentacoes() {
-        List<MovimentacaoEstoque> movimentacoes = estoqueService.listarMovimentacoes();
+        List<MovimentacaoEstoque> movimentacoes = estoqueServiceEmMemoria.listarMovimentacoes();
         System.out.println("\n--- Histórico de movimentações ---");
         if (movimentacoes.isEmpty()) {
             System.out.println("Nenhuma movimentação registrada ainda.");
@@ -183,9 +171,6 @@ public class Menu {
         }
     }
 
-    // ----------------------------------------------------------------
-    // Questão 3 - Juros
-    // ----------------------------------------------------------------
     private void executarJuros() {
         System.out.println("\n--- Cálculo de juros por atraso (2,5% ao dia) ---");
 
@@ -212,11 +197,6 @@ public class Menu {
         }
     }
 
-    // ----------------------------------------------------------------
-    // Leitura de entrada com tratamento de erros
-    // ----------------------------------------------------------------
-
-    /** Lê um inteiro; em caso de entrada inválida, avisa e retorna null. */
     private Integer lerInteiro(String rotulo) {
         System.out.print(rotulo);
         String entrada = scanner.nextLine().trim();
@@ -228,12 +208,9 @@ public class Menu {
         }
     }
 
-    /**
-     * Lê um valor monetário no padrão brasileiro (vírgula como separador
-     * decimal). Aceita também ponto. Retorna null em caso de entrada inválida.
-     */
     private BigDecimal lerValorMonetario(String rotulo) {
         System.out.print(rotulo);
+        // Converte do padrão BR (1.234,56) para o formato aceito por BigDecimal (1234.56).
         String entrada = scanner.nextLine().trim().replace(".", "").replace(",", ".");
         try {
             return new BigDecimal(entrada);
@@ -243,7 +220,6 @@ public class Menu {
         }
     }
 
-    /** Lê uma data no formato dd/MM/aaaa; retorna null em caso de entrada inválida. */
     private LocalDate lerData(String rotulo) {
         System.out.print(rotulo);
         String entrada = scanner.nextLine().trim();

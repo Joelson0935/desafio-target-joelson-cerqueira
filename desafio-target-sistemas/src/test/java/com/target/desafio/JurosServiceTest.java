@@ -15,8 +15,7 @@ class JurosServiceTest {
     private final JurosService service = new JurosService();
 
     @Test
-    void calculaJurosSimplesParaAtraso() {
-        // 10 dias de atraso: 1000.00 * 0,025 * 10 = 250.00
+    void dezDiasDeAtrasoSobreMilReaisGeram250DeJurosE1250DeTotal() {
         LocalDate vencimento = LocalDate.of(2026, 1, 1);
         LocalDate hoje = LocalDate.of(2026, 1, 11);
 
@@ -28,31 +27,7 @@ class JurosServiceTest {
     }
 
     @Test
-    void vencimentoNoFuturoNaoGeraJuros() {
-        LocalDate vencimento = LocalDate.of(2026, 12, 31);
-        LocalDate hoje = LocalDate.of(2026, 1, 11);
-
-        ResultadoJuros r = service.calcular(new BigDecimal("1000.00"), vencimento, hoje);
-
-        assertEquals(0, r.getDiasAtraso());
-        assertEquals(new BigDecimal("0.00"), r.getValorJuros());
-        assertEquals(new BigDecimal("1000.00"), r.getValorTotal());
-    }
-
-    @Test
-    void vencimentoHojeNaoGeraJuros() {
-        LocalDate hoje = LocalDate.of(2026, 1, 11);
-
-        ResultadoJuros r = service.calcular(new BigDecimal("500.00"), hoje, hoje);
-
-        assertEquals(0, r.getDiasAtraso());
-        assertEquals(new BigDecimal("0.00"), r.getValorJuros());
-        assertEquals(new BigDecimal("500.00"), r.getValorTotal());
-    }
-
-    @Test
-    void calculaJurosComUmDiaDeAtraso() {
-        // 1 dia: 250.30 * 0,025 * 1 = 6.2575 -> 6.26 (HALF_UP)
+    void umDiaDeAtrasoSobre250_30GeraJurosArredondadoPara6_26() {
         LocalDate vencimento = LocalDate.of(2026, 3, 10);
         LocalDate hoje = LocalDate.of(2026, 3, 11);
 
@@ -64,7 +39,30 @@ class JurosServiceTest {
     }
 
     @Test
-    void valorInvalidoLancaExcecao() {
+    void vencimentoNoFuturoResultaEmZeroDiasDeAtrasoESemJuros() {
+        LocalDate vencimento = LocalDate.of(2026, 12, 31);
+        LocalDate hoje = LocalDate.of(2026, 1, 11);
+
+        ResultadoJuros r = service.calcular(new BigDecimal("1000.00"), vencimento, hoje);
+
+        assertEquals(0, r.getDiasAtraso());
+        assertEquals(new BigDecimal("0.00"), r.getValorJuros());
+        assertEquals(new BigDecimal("1000.00"), r.getValorTotal());
+    }
+
+    @Test
+    void vencimentoNaPropriaDataDeHojeNaoGeraJuros() {
+        LocalDate hoje = LocalDate.of(2026, 1, 11);
+
+        ResultadoJuros r = service.calcular(new BigDecimal("500.00"), hoje, hoje);
+
+        assertEquals(0, r.getDiasAtraso());
+        assertEquals(new BigDecimal("0.00"), r.getValorJuros());
+        assertEquals(new BigDecimal("500.00"), r.getValorTotal());
+    }
+
+    @Test
+    void valorZeroOuNegativoLancaIllegalArgumentException() {
         LocalDate hoje = LocalDate.of(2026, 1, 11);
         assertThrows(IllegalArgumentException.class, () ->
                 service.calcular(new BigDecimal("0.00"), LocalDate.of(2026, 1, 1), hoje));

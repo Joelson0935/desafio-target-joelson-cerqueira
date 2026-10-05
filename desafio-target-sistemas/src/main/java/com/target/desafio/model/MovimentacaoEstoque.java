@@ -1,11 +1,5 @@
 package com.target.desafio.model;
 
-/**
- * Representa uma movimentação de estoque já efetuada.
- * Cada movimentação possui um identificador único, o produto afetado,
- * o tipo (entrada/saída), uma descrição, a quantidade movimentada e
- * a quantidade final do produto em estoque após o lançamento.
- */
 public class MovimentacaoEstoque {
 
     private final long id;

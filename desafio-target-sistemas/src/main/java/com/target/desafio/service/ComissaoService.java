@@ -10,43 +10,26 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Regra de negócio da Questão 1.
- *
- * Calcula a comissão de cada vendedor somando a comissão de cada venda,
- * segundo as faixas:
- *   - venda abaixo de R$ 100,00 ............ não gera comissão (0%)
- *   - venda de R$ 100,00 até R$ 499,99 ..... 1% de comissão
- *   - venda a partir de R$ 500,00 .......... 5% de comissão
- */
 public class ComissaoService {
 
-    private static final BigDecimal LIMITE_SEM_COMISSAO = new BigDecimal("100.00");
-    private static final BigDecimal LIMITE_COMISSAO_MAIOR = new BigDecimal("500.00");
+    private static final BigDecimal VALOR_MINIMO_PARA_COMISSAO = new BigDecimal("100.00");
+    private static final BigDecimal VALOR_MINIMO_COMISSAO_MAIOR = new BigDecimal("500.00");
 
-    private static final BigDecimal PERCENTUAL_1 = new BigDecimal("0.01"); // 1%
-    private static final BigDecimal PERCENTUAL_5 = new BigDecimal("0.05"); // 5%
+    private static final BigDecimal TAXA_UM_PORCENTO = new BigDecimal("0.01");
+    private static final BigDecimal TAXA_CINCO_PORCENTO = new BigDecimal("0.05");
 
-    /**
-     * Calcula a comissão de uma única venda, já arredondada para 2 casas (HALF_UP).
-     */
     public BigDecimal calcularComissaoVenda(BigDecimal valor) {
-        if (valor == null || valor.compareTo(LIMITE_SEM_COMISSAO) < 0) {
-            // Abaixo de R$ 100,00 (ou valor ausente): sem comissão.
+        if (valor == null || valor.compareTo(VALOR_MINIMO_PARA_COMISSAO) < 0) {
             return BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
         }
 
-        BigDecimal percentual = (valor.compareTo(LIMITE_COMISSAO_MAIOR) >= 0)
-                ? PERCENTUAL_5   // a partir de R$ 500,00
-                : PERCENTUAL_1;  // de R$ 100,00 até R$ 499,99
+        BigDecimal taxaAplicavel = valor.compareTo(VALOR_MINIMO_COMISSAO_MAIOR) >= 0
+                ? TAXA_CINCO_PORCENTO
+                : TAXA_UM_PORCENTO;
 
-        return valor.multiply(percentual).setScale(2, RoundingMode.HALF_UP);
+        return valor.multiply(taxaAplicavel).setScale(2, RoundingMode.HALF_UP);
     }
 
-    /**
-     * Agrupa as vendas por vendedor e consolida total vendido e total de comissão.
-     * A ordem de inserção dos vendedores é preservada (LinkedHashMap).
-     */
     public List<ResumoComissao> calcularComissaoPorVendedor(List<Venda> vendas) {
         Map<String, BigDecimal> totalVendidoPorVendedor = new LinkedHashMap<>();
         Map<String, BigDecimal> totalComissaoPorVendedor = new LinkedHashMap<>();

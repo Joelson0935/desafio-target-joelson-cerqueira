@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BR"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21.0.12.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\user\AppData\Local\Temp\surefire7058415517450156471\surefirebooter9751665374090205720.jar C:\Users\user\AppData\Local\Temp\surefire7058415517450156471 2026-10-05T14-25-22_097-jvmRun1 surefire16945640414534399936tmp surefire_0893889707563504882tmp"/>
+    <property name="sun.java.command" value="C:\Users\user\AppData\Local\Temp\surefire9652351296667159904\surefirebooter15074510417183627119.jar C:\Users\user\AppData\Local\Temp\surefire9652351296667159904 2026-10-05T17-50-08_816-jvmRun1 surefire17719855932229878640tmp surefire_011390275968897078552tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\target\test-classes;C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\target\classes;C:\Users\user\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.18.2\jackson-databind-2.18.2.jar;C:\Users\user\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.18.2\jackson-annotations-2.18.2.jar;C:\Users\user\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.18.2\jackson-core-2.18.2.jar;C:\Users\user\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.1\junit-jupiter-engine-5.7.1.jar;C:\Users\user\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\user\.m2\repository\org\junit\platform\junit-platform-engine\1.7.1\junit-platform-engine-1.7.1.jar;C:\Users\user\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\user\.m2\repository\org\junit\platform\junit-platform-commons\1.7.1\junit-platform-commons-1.7.1.jar;C:\Users\user\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.1\junit-jupiter-api-5.7.1.jar;C:\Users\user\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.7.1\junit-jupiter-params-5.7.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\user\AppData\Local\Temp\surefire7058415517450156471\surefirebooter9751665374090205720.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\user\AppData\Local\Temp\surefire9652351296667159904\surefirebooter15074510417183627119.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.12.1+1-LTS-4"/>
@@ -58,12 +58,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="saidaSubtraiDoEstoqueERetornaEstoqueResultante" classname="com.target.desafio.EstoqueServiceTest" time="0.01"/>
-  <testcase name="produtoInexistenteLancaExcecao" classname="com.target.desafio.EstoqueServiceTest" time="0.007"/>
-  <testcase name="carregaProdutosDoJson" classname="com.target.desafio.EstoqueServiceTest" time="0.003"/>
-  <testcase name="quantidadeInvalidaLancaExcecao" classname="com.target.desafio.EstoqueServiceTest" time="0.002"/>
-  <testcase name="saidaAcimaDoEstoqueEhRecusadaEnaoAlteraOEstoque" classname="com.target.desafio.EstoqueServiceTest" time="0.01"/>
-  <testcase name="cadaMovimentacaoRecebeIdUnicoIncremental" classname="com.target.desafio.EstoqueServiceTest" time="0.003"/>
-  <testcase name="saidaDeTodoOEstoqueEhPermitidaEZeraOProduto" classname="com.target.desafio.EstoqueServiceTest" time="0.002"/>
-  <testcase name="entradaSomaAoEstoqueERetornaEstoqueResultante" classname="com.target.desafio.EstoqueServiceTest" time="0.002"/>
+  <testcase name="saidaMaiorQueOEstoqueEhRecusadaEMantemOEstoqueInalterado" classname="com.target.desafio.EstoqueServiceTest" time="0.017"/>
+  <testcase name="saidaIgualAoEstoqueTotalEhPermitidaEZeraOProduto" classname="com.target.desafio.EstoqueServiceTest" time="0.004"/>
+  <testcase name="movimentacoesRecebemIdsUnicosEmSequenciaCrescente" classname="com.target.desafio.EstoqueServiceTest" time="0.003"/>
+  <testcase name="movimentacaoComCodigoDeProdutoInexistenteLancaIllegalArgumentException" classname="com.target.desafio.EstoqueServiceTest" time="0.005"/>
+  <testcase name="carregaOsCincoProdutosDoJsonComDescricaoEEstoqueIniciais" classname="com.target.desafio.EstoqueServiceTest" time="0.003"/>
+  <testcase name="saidaDe25EmProdutoCom75AtualizaEstoqueResultantePara50" classname="com.target.desafio.EstoqueServiceTest" time="0.002"/>
+  <testcase name="movimentacaoComQuantidadeZeroLancaIllegalArgumentException" classname="com.target.desafio.EstoqueServiceTest" time="0.003"/>
+  <testcase name="entradaDe50EmProdutoCom150AtualizaEstoqueResultantePara200" classname="com.target.desafio.EstoqueServiceTest" time="0.002"/>
 </testsuite>

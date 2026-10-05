@@ -2,10 +2,6 @@ package com.target.desafio.model;
 
 import java.math.BigDecimal;
 
-/**
- * Resultado consolidado da comissão de um vendedor: quanto ele vendeu no total,
- * quantas vendas realizou e quanto gerou de comissão somando venda a venda.
- */
 public class ResumoComissao {
 
     private final String vendedor;

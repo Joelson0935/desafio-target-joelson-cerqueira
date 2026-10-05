@@ -1,9 +1,6 @@
 package com.target.desafio.service;
 
-/**
- * Lançada quando uma movimentação de saída tentaria deixar o estoque
- * do produto negativo. A movimentação não é efetuada nesse caso.
- */
+// Lançada quando uma saída tentaria deixar o estoque negativo; a movimentação não é efetuada.
 public class EstoqueInsuficienteException extends RuntimeException {
 
     public EstoqueInsuficienteException(String mensagem) {
