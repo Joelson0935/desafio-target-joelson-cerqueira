@@ -2,6 +2,7 @@ C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\model\EstoqueWrapper.java
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\model\MovimentacaoEstoque.java
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\model\Produto.java
+C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\model\ResultadoJuros.java
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\model\ResumoComissao.java
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\model\TipoMovimentacao.java
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\model\Venda.java
@@ -9,4 +10,5 @@ C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\service\ComissaoService.java
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\service\EstoqueInsuficienteException.java
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\service\EstoqueService.java
+C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\service\JurosService.java
 C:\Users\user\Projetos\desafio-target-joelson-cerqueira\desafio-target-sistemas\src\main\java\com\target\desafio\util\JsonReader.java
