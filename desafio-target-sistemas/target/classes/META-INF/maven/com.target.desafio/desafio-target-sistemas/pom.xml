@@ -51,6 +51,16 @@
         <version>3.5.0</version>
         <configuration>
           <mainClass>com.target.desafio.App</mainClass>
+          <systemProperties>
+            <systemProperty>
+              <key>file.encoding</key>
+              <value>UTF-8</value>
+            </systemProperty>
+            <systemProperty>
+              <key>stdout.encoding</key>
+              <value>UTF-8</value>
+            </systemProperty>
+          </systemProperties>
         </configuration>
       </plugin>
     </plugins>

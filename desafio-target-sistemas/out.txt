@@ -1,0 +1,36 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------< com.target.desafio:desafio-target-sistemas >-------------
+[INFO] Building desafio-target-sistemas 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- exec:3.5.0:java (default-cli) @ desafio-target-sistemas ---
+
+===== DESAFIO TARGET SISTEMAS =====
+1 - Comiss�o de vendedores
+2 - Movimenta��o de estoque
+3 - C�lculo de juros por atraso
+0 - Sair
+Escolha uma op��o: 
+--- Comiss�o por vendedor ---
+Vendedor             Vendas      Total vendido        Comiss�o
+--------------------------------------------------------------
+Jo�o Silva               10       R$�10.754,70       R$�495,69
+Maria Souza               9        R$�9.874,30       R$�465,96
+Carlos Oliveira           8        R$�7.928,35       R$�379,38
+Ana Lima                  9        R$�8.763,95       R$�404,99
+
+===== DESAFIO TARGET SISTEMAS =====
+1 - Comiss�o de vendedores
+2 - Movimenta��o de estoque
+3 - C�lculo de juros por atraso
+0 - Sair
+Escolha uma op��o: 
+Encerrando. At� logo!
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.547 s
+[INFO] Finished at: 2026-10-05T18:30:52-03:00
+[INFO] ------------------------------------------------------------------------
