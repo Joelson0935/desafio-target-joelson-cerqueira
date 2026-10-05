@@ -1,0 +1,5 @@
+com\target\desafio\model\Venda.class
+com\target\desafio\util\JsonReader.class
+com\target\desafio\model\ResumoComissao.class
+com\target\desafio\service\ComissaoService.class
+com\target\desafio\model\VendasWrapper.class
